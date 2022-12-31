@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Windows 正在更新</title>
+<style>
+@keyframes bgcolor {
+    0%   { background-color: #c44040; }
+	10%  { background-color: #c48040; }
+	20%  { background-color: #80c440; }
+	30%  { background-color: #40c440; }
+    40%  { background-color: #40c480; }
+	50%  { background-color: #4080c4; }
+	60%  { background-color: #4040c4; }
+	70%  { background-color: #8040c4; }
+    80%  { background-color: #c44080; }
+	90%  { background-color: #000000; }
+	100% { background-color: #c44040; }
+}
+html {
+    height: 100%;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    animation-delay: 0s;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-name: bgcolor;
+    background-color: #FFFFFF;
+    color: white;
+    font-family: "Segoe UI", "Microsoft Yahei UI";
+    height: 100%;
+    margin: 0px;
+}
+@font-face {
+    font-family: "Windows 8 Boot";
+    src: url("Win8Boot.woff");
+}
+.content {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+#animation {
+    font-family: "Windows 8 Boot";
+    font-size: 32pt;
+}
+#description {
+    margin-top: 18pt;
+    font-size: 18pt;
+}
+</style>
+</head>
+<body>
+<div class="content">
+<div id="animation"></div>
+<div id="description">苟利国家生死以，岂因祸福避趋之。<br>Windows 正在更新，请不要关闭计算机。</div>
+</div>
+<script language="javascript">
+(() => {
+    const firstCode = 0xe052
+    const lastCode = 0xe0cc
+    const frameRate = 30
+    const startTime = new Date()
+    const updateFrame = () => {
+        const getCode = () => (new Date()-startTime)*frameRate/1000%(lastCode-firstCode)+firstCode
+        document.getElementById("animation").innerText = String.fromCharCode(getCode())
+        requestAnimationFrame(updateFrame)
+    }
+    updateFrame()
+})()
+</script>
+</body></html>
