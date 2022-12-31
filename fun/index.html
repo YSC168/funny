@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<script>((function() {var callbacks = [],timeLimit = 50,open = false;setInterval(loop, 1);return {addListener: function(fn) {callbacks.push(fn);},cancleListenr: function(fn) {callbacks = callbacks.filter(function(v) {return v !== fn;});}}
+function loop() {var startTime = new Date();debugger;if (new Date() - startTime > timeLimit) {if (!open) {callbacks.forEach(function(fn) {fn.call(null);});}open = true;window.stop();alert('你真坏，请关闭控制台！');document.body.innerHTML = "";} else {open = false;}}})()).addListener(function() {window.location.reload();});</script><script>function toDevtools(){
+  let num = 0; 
+  let devtools = new Date();
+  devtools.toString = function() {
+    num++;
+    if (num > 1) {
+        alert('你真坏，请关闭控制台！')
+        window.location.href = "about:blank"
+        blast();
+    }
+  }
+  console.log('', devtools);
+}
+toDevtools();</script>
+<head>
+	<title>网页特效</title>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+   <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<meta name="format-detection" content="telephone=no
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">	<style type="text/css">
+     body {background-image:url(https://tuapi.eees.cc/api.php?category=dongman&type=302) ;//图片类型更换请修改参数  https://api.bugjava.cn/acg
+   background-repeat:repeat;
+   background-attachment:fixed;
+   background-position:50% 50%;
+   }
+    .fireworks {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 99999999;
+      pointer-events: none;
+    }
+   .colorfulline { position: fixed;  
+              top: 0;  
+              left: 0;  
+              z-index: 0;  
+              width: 100%;  
+              height: 100%;  
+              pointer-events: none; 
+              } 
+
+  
+  </style>
+<link href="css/materialize.css" type="text/css" rel="stylesheet" />
+<link rel="shortcut icon" href="lovebig.ico" >
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/aplayer.min.js"></script>
+ 
+
+ 
+<div id="tp-weather-widget"></div>
+<script>
+  (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+  window.SeniverseWeatherWidget('show', {
+    flavor: "slim",
+    location: "WX4FBXXFKE4F",
+    geolocation: true,
+    language: "zh-Hans",
+    unit: "c",
+    theme: "auto",
+    token: "c968c643-fb48-446d-b587-f86813bfff6c",
+    hover: "enabled",
+    container: "tp-weather-widget"
+  })
+</script>            <!--  心知天气   -->
+<script language="JavaScript">
+     window.onload = function(){
+        var script = document.createElement("script");  
+var isOnPc = (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent));
+
+    
+
+      script.setAttribute("src","https://cdn.jsdelivr.net/gh/YSC168/CDN-for-blog@1.0.5/js/sakura.js");  
+        document.getElementsByTagName("body")[0].appendChild(script); 
+   
+     } 
+</script>
+
+</head>
+
+<body style="cursor: url(cursor.ico),auto">
+
+<canvas class="colorfulline"></canvas> 
+<canvas class="fireworks"></canvas>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script><!--点击爆炸效果-->
+  <script type="text/javascript" src="js/fireworks.min.js"></script><!--点击爆炸效果-->
+
+
+<!-- 页面点击小红心-->
+<script type="text/javascript" src="js/love.js"></script>
+<script type="text/javascript" src="js/bg.js"></script>
+
+
+
+<footer>
+          <script type="text/javascript" src="https://api.uixsj.cn/hitokoto/w.php?code=js"></script><div id="xsjhitokoto" style="margin-top: 100px;"><script>xsjhitokoto()</script></div>
+        
+  </footer>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<div class="aplayer no-destroy" data-id="2829883282" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-lrctype="1" data-preload="none" data-autoplay="true" muted></div>
+
+<link rel="stylesheet" href="https://npm.elemecdn.com/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/aplayer/dist/APlayer.min.js"></script><script src="https://npm.elemecdn.com/ethan4116-blog/lib/js/theme/meting.min.js"></script><script src="https://npm.elemecdn.com/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener toc scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+
+  typeof preloader === 'object' && preloader.initLoading()
+
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()    
+</body>
+</html>

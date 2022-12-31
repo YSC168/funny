@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="flipclock.css">
+    <link rel="stylesheet" type="text/css" href="z_clock.css">
+    <script src="solarlunar.min.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: Song, Mincho, Simsun;
+        }
+        
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: #a60006;
+            /* 
+          License type: Free for commercial use WITH ATTRIBUTION license *
+          Licensor's
+          Author:
+          Starline - Freepik.com
+          For the item: Traditional chinese red background greeting with lanterns
+          Download
+          date:
+          15 Nov 2022
+          Item url:
+          * as defined in the standard terms and conditions on Freepik.com.
+          For any queries related to this document or license please contact Freepik Support via
+          Freepik Company, S.L Commercial Registry of Málaga, volume 4994, sheet 217, page number MA-113059, with Tax
+          Number B-93183366 and registered office at 13 Molina Lario Street, 5th floor, 29015 Málaga, Spain.
+          https://www.freepik.com/free-vector/traditional-chinese-red-background-greeting-withlanterns_12158371.htm
+          */
+            /* 图片来源网络如侵权联系作者 QQ 2374286504 */
+            background: url(images/21831920_6511652.jpg) no-repeat;
+            background-size: 100%;
+            background-position: 100% center;
+            overflow: hidden;
+        }
+        
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        
+        .content h1,
+        .content .downTime1 {
+            color: #ffdd77;
+            text-shadow: 2px 2px 5px #000;
+        }
+        
+        .content span {
+            font-weight: normal;
+            font-size: 54px;
+            font-weight: 100;
+            color: #ffdd77;
+            text-shadow: 2px 2px 5px #000;
+        }
+        
+        .content .downTime1 span:nth-child(2n) {
+            font-size: 30px;
+        }
+        
+        .bg {
+            position: fixed;
+            top: 0px;
+            left: 90%;
+        }
+        
+        .create1 {
+            top: 5%;
+        }
+        
+        @keyframes create_move {
+            0% {
+                top: -10%;
+            }
+            10% {
+                top: 5%;
+            }
+            90% {
+                top: 5%;
+            }
+            100% {
+                top: -10%;
+            }
+        }
+        
+        .create {
+            position: fixed;
+            left: 50%;
+            top: -10%;
+            transform: translateX(-50%);
+            padding: 0px 20px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: rgb(108, 117, 125);
+            color: #fff;
+            font-weight: 600;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            transition: all 0.2s;
+            animation: create_move 4s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bg-cover"></div>
+    <div class="content">
+        <h1 id="NowTime_sfm" style=" line-height: 80px; font-size: 60px; font-weight: 800;"></h1>
+        <h1 id="NowTime" style=" line-height: 80px; font-size: 42px;"></h1>
+        <h1 id="NowTime_NonLi" style=" line-height: 50px; font-size: 42px;"></h1>
+        <h1 id="NowTime1" style=" line-height:80px; font-weight: 600;">距离 2023 春节还剩：</h1>
+        <div id="downTime1" class="downTime1" style=" font-size: 49px; ">
+            <span>--</span>
+            <span>天</span>
+            <span>--</span>
+            <span>时</span>
+            <span>--</span>
+            <span>分</span>
+            <span>--</span>
+            <span>秒</span>
+        </div>
+    </div>
+    <div class="clock"></div>
+    <div id="debug"></div>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="flipclock.min.js"></script>
+    <script type="text/javascript" src="jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="z_clock.js"></script>
+    <script>
+        // 
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+        var downTimeSpan = document.querySelectorAll('span');
+        var NowTime_sfm = document.querySelector('#NowTime_sfm');
+        var NowTime = document.querySelector('#NowTime');
+        var NowTime_NonLi = document.querySelector('#NowTime_NonLi');
+        var NowTime1 = document.querySelector('#NowTime1');
+        // 获取当前时间
+        var dateTime = function() {
+            var date = new Date();
+            var date1 = new Date('2023-1-22 0:0:0');
+            var date2 = (+date1 - +date) / 1000;
+            return [date, date1, date2];
+        }
+        var Time = function() {
+            function timeO(oo) {
+                if (oo < 10) {
+                    return oo = '0' + oo;
+                } else {
+                    return oo;
+                }
+            };
+            var weekArr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', ]
+            var time_Hours = dateTime()[0].getHours();
+            var time_Minutes = dateTime()[0].getMinutes();
+            var time_Seconds = dateTime()[0].getSeconds();
+            var time_FullYear = dateTime()[0].getFullYear();
+            var time_Month = dateTime()[0].getMonth() + 1;
+            var time_Date = dateTime()[0].getDate();
+            var time_Day = dateTime()[0].getDay();
+            var time_NonLi = solarlunar.solar2lunar();
+            NowTime_sfm.innerHTML = timeO(time_Hours) + ' : ' + timeO(time_Minutes) + ' : ' + timeO(time_Seconds); // 当前时间
+            NowTime.innerHTML = '今 天 是 ' + time_FullYear + ' 年 ' + (time_Month) + ' 月 ' + time_Date + ' 日 '; // 阳历
+            NowTime_NonLi.innerHTML = '农历' + time_NonLi.monthCn + time_NonLi.dayCn + '&nbsp;' + weekArr[time_Day] + '&nbsp;' + time_NonLi.term; // 农历
+
+        };
+        // 倒计时
+        var countdown = function() {
+            if (dateTime()[2] > 0) {
+                var d = parseInt((dateTime()[2] / (3600 * 24)));
+                var h = parseInt((dateTime()[2] / 60 / 60 % 24));
+                var m = parseInt((dateTime()[2] / 60 % 60));
+                var c = parseInt((dateTime()[2] % 60 + 1));
+                downTimeSpan[0].innerHTML = d;
+                downTimeSpan[2].innerHTML = h;
+                downTimeSpan[4].innerHTML = m;
+                downTimeSpan[6].innerHTML = c;
+                XH();
+                XH();
+                XH();
+            } else {
+                downTimeSpan[0].innerHTML = '<p style="font-size: 24px;">新的一年，唯愿：</br>命途风霜尽，乾坤气象和，</br>历添新岁月，拂满旧山河。</br></br> 新年好！陌生人！</p><p style="font-size: 32px;line-height: 80px; ">感谢您的陪伴！我们后会有期！</p>';
+                NowTime1.innerHTML = '';
+                downTimeSpan[1].innerHTML = '';
+                downTimeSpan[2].innerHTML = '';
+                downTimeSpan[3].innerHTML = '';
+                downTimeSpan[4].innerHTML = '';
+                downTimeSpan[5].innerHTML = '';
+                downTimeSpan[6].innerHTML = '';
+                downTimeSpan[7].innerHTML = '';
+                XH();
+                XH();
+                XH();
+                XH();
+                XH();
+            }
+
+        };
+        //  1、定义一片雪花模板
+        var flake = document.createElement('span');
+        // 雪花字符 ❄❉❅❆✻✼❇❈❊✥✺
+        flake.innerHTML = '✺';
+        flake.style.cssText = 'position:absolute;color:#fff;';
+
+        //获取页面的高度 相当于雪花下落结束时Y轴的位置
+        var documentHeight = window.innerHeight;
+        //获取页面的宽度，利用这个数来算出，雪花开始时left的值
+        var documentWidth = window.innerWidth;
+        var XH = function() { //页面加载之后，定时器就开始工作
+            //随机生成雪花下落 开始 时left的值，相当于开始时X轴的位置
+            var startLeft = Math.random() * documentWidth;
+
+            //随机生成雪花下落 结束 时left的值，相当于结束时X轴的位置
+            var endLeft = Math.random() * documentWidth;
+
+            //随机生成雪花大小
+            var flakeSize = 4 + 18 * Math.random();
+
+            //随机生成雪花下落持续时间
+            var durationTime = 4000 + 8000 * Math.random();
+
+            //随机生成雪花下落 开始 时的透明度
+            var startOpacity = 0.7 + 0.3 * Math.random();
+
+            //随机生成雪花下落 结束 时的透明度
+            var endOpacity = 0.2 + 0.2 * Math.random();
+
+            //克隆一个雪花模板
+            var cloneFlake = flake.cloneNode(true);
+
+            //第一次修改样式，定义克隆出来的雪花的样式
+            cloneFlake.style.cssText += `
+                      left: ${startLeft}px;
+                      opacity: ${startOpacity};
+                      font-size:${flakeSize}px;
+                      top:-25px;
+                          transition:${durationTime}ms;`;
+
+            //拼接到页面中
+            document.body.appendChild(cloneFlake);
+
+            //设置第二个定时器，一次性定时器，
+            //当第一个定时器生成雪花，并在页面上渲染出来后，修改雪花的样式，让雪花动起来；
+            setTimeout(function() {
+                //第二次修改样式
+                cloneFlake.style.cssText += `
+                              left: ${endLeft}px;
+                              top:${documentHeight}px;
+                              opacity:${endOpacity};`;
+
+                //4、设置第三个定时器，当雪花落下后，删除雪花。
+                setTimeout(function() {
+                    cloneFlake.remove();
+                }, durationTime);
+            }, 0);
+
+        };
+        // 
+        // 
+        countdown();
+        Time();
+        dateTime();
+        window.setInterval('countdown()', 1000);
+        window.setInterval('Time()', 1000);
+        window.setInterval('dateTime()', 1000);
+        var bg = document.querySelector('.bg');
+        var body = document.querySelector('body');
+        var fly = 0;
+        bg.onclick = function() {
+            if (fly == 0) {
+                body.style.backgroundImage = 'url(images/21831920_6511652.jpg)';
+                fly = 1;
+            } else {
+                body.style.backgroundImage = '';
+                fly = 0;
+            }
+        };
+        // 
+
+        // window.onload = function() {
+        //     var create = document.createElement('div');
+        //     create.className = 'create';
+        //     create.innerHTML = '右上角的小衣服可以切换背景哦！';
+        //     body.appendChild(create);
+        // };
+    </script>
+</body>
+
+</html>
