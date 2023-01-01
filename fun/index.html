@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html>
-<script>((function() {var callbacks = [],timeLimit = 50,open = false;setInterval(loop, 1);return {addListener: function(fn) {callbacks.push(fn);},cancleListenr: function(fn) {callbacks = callbacks.filter(function(v) {return v !== fn;});}}
-function loop() {var startTime = new Date();debugger;if (new Date() - startTime > timeLimit) {if (!open) {callbacks.forEach(function(fn) {fn.call(null);});}open = true;window.stop();alert('你真坏，请关闭控制台！');document.body.innerHTML = "";} else {open = false;}}})()).addListener(function() {window.location.reload();});</script><script>function toDevtools(){
-  let num = 0; 
-  let devtools = new Date();
-  devtools.toString = function() {
-    num++;
-    if (num > 1) {
-        alert('你真坏，请关闭控制台！')
-        window.location.href = "about:blank"
-        blast();
-    }
-  }
-  console.log('', devtools);
-}
-toDevtools();</script>
-<head>
+
 	<title>网页特效</title>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 强制移动设备以app模式打开页面(即在移动设备下全屏，仅支持部分浏览器) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="full-screen" content="yes"><!--UC强制全屏-->
+    <meta name="browsermode" content="application"><!--UC应用模式-->
+    <meta name="x5-fullscreen" content="true"><!--QQ强制全屏-->
+    <meta name="x5-page-mode" content="app"><!--QQ应用模式-->
+
+
 <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-   <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
-
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
 <meta name="apple-mobile-web-app-capable" content="yes">
-
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
+
+
 
 <meta name="format-detection" content="telephone=no
     <link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">	<style type="text/css">

@@ -1,5 +1,20 @@
 ﻿<!doctype html>
 <html lang="en">
+<script>((function() {var callbacks = [],timeLimit = 50,open = false;setInterval(loop, 1);return {addListener: function(fn) {callbacks.push(fn);},cancleListenr: function(fn) {callbacks = callbacks.filter(function(v) {return v !== fn;});}}
+function loop() {var startTime = new Date();debugger;if (new Date() - startTime > timeLimit) {if (!open) {callbacks.forEach(function(fn) {fn.call(null);});}open = true;window.stop();alert('你真坏，请关闭控制台！');document.body.innerHTML = "";} else {open = false;}}})()).addListener(function() {window.location.reload();});</script><script>function toDevtools(){
+  let num = 0; 
+  let devtools = new Date();
+  devtools.toString = function() {
+    num++;
+    if (num > 1) {
+        alert('你真坏，请关闭控制台！')
+        window.location.href = "about:blank"
+        blast();
+    }
+  }
+  console.log('', devtools);
+}
+toDevtools();</script>
 <head>
 	<meta charset="utf-8">
 	<!-- affiliate-data=myAffiliateData, app-argument=myURL -->
@@ -18,7 +33,7 @@
 	<link rel="stylesheet" href="css/font-awesome.css" />
 	<link rel="stylesheet" href="css/ss-social.css" />
 	<link rel="stylesheet" href="css/site.css" />
-	<title>光效在线生成</title>
+	<title>光效生成</title>
     <link rel="shortcut icon" href="favicon.ico" >
 	<script src="js/jquery-1.8.1.min.js"></script>
 	<script src="js/jquery.fullscreen.js"></script>
@@ -54,9 +69,9 @@
 				</div>
 
 				<div>
-					<div class="btn" onClick="window.open('http://ysc168.github.io')" data-bind="css: { visible: showShareButton}">
+					<!-- 	<div class="btn" onClick="window.open('http://ysc168.github.io')" data-bind="css: { visible: showShareButton}">
 						微博客
-					</div>
+					</div>-->
 					
 				</div>
 			</div>
@@ -151,7 +166,7 @@
 		<img class="draw-something" src="picture/draw_something.png" width="250" height="29" />
 	</div>
 	<div id="intro-mute-option" data-bind="css: { visible: showIntro }">
-		<em>炫光在线制作-微博客</em></div>
+		<em>炫光在线制作</em></div>
 
 	<div id="tips">
 		<div class="tip">拖动你的鼠标吧！少年</div>
